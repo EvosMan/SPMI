@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardControler extends Controller
 {
+
     public function index()
     {
         $countDokumen = Dokumen::count();

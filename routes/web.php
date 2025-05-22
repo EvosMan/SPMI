@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardControler;
-
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\DetailEvaluasiController;
@@ -57,3 +56,4 @@ Route::middleware(['auth'])->group(function () {
         Route::get('user', [UserController::class, 'datatable'])->name('user.datatable');
     });
 });
+// Route::get('user', [UserController::class, 'datatable'])->name('user.datatable');
