@@ -32,33 +32,28 @@
                         @endif
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
-                            <select class="form-control" name="kategori" id="kategori">
+                            <select class="form-control" name="kategori" id="kategori" {{ request('type') ? 'disabled' : '' }}>
                                 <option value="">Pilih Kategori</option>
-                                <option value="Pedoman Mutu"
-                                    {{ $dokumen->kategori == 'Pedoman Mutu' || old('kategori') == 'Pedoman Mutu' ? 'selected' : '' }}>
-                                    Pedoman Mutu
+                                <option value="Kebijakan"
+                                    {{ (request('type') == 'kebijakan' || $dokumen->kategori == 'Kebijakan' || old('kategori') == 'Kebijakan') ? 'selected' : '' }}>
+                                    Kebijakan
                                 </option>
-                                <option value="Visi Misi"
-                                    {{ $dokumen->kategori == 'Visi Misi' || old('kategori') == 'Visi Misi' ? 'selected' : '' }}>
-                                    Visi Misi
-                                </option>
-                                <option value="Renstra"
-                                    {{ $dokumen->kategori == 'Renstra' || old('kategori') == 'Renstra' ? 'selected' : '' }}>
-                                    Renstra
-                                </option>
-                                <option value="Renop"
-                                    {{ $dokumen->kategori == 'Renop' || old('kategori') == 'Renop' ? 'selected' : '' }}>
-                                    Renop
+                                <option value="Standart"
+                                    {{ (request('type') == 'standart' || $dokumen->kategori == 'Standart' || old('kategori') == 'Standart') ? 'selected' : '' }}>
+                                    Standart
                                 </option>
                                 <option value="Manual"
-                                    {{ $dokumen->kategori == 'Manual' || old('kategori') == 'Manual' ? 'selected' : '' }}>
+                                    {{ (request('type') == 'manual' || $dokumen->kategori == 'Manual' || old('kategori') == 'Manual') ? 'selected' : '' }}>
                                     Manual
                                 </option>
                                 <option value="Formulir"
-                                    {{ $dokumen->kategori == 'Formulir' || old('kategori') == 'Formulir' ? 'selected' : '' }}>
+                                    {{ (request('type') == 'formulir' || $dokumen->kategori == 'Formulir' || old('kategori') == 'Formulir') ? 'selected' : '' }}>
                                     Formulir
                                 </option>
                             </select>
+                            @if(request('type'))
+                                <input type="hidden" name="kategori" value="{{ ucfirst(request('type')) }}">
+                            @endif
                             @error('kategori')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

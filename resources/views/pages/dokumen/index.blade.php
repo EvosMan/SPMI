@@ -1,47 +1,23 @@
 @extends('layouts.app')
 @section('breadcrumb')
+    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">
-                        @if(request('type') == 'kebijakan')
-                            Dokumen Kebijakan
-                        @elseif(request('type') == 'manual')
-                            Dokumen Manual
-                        @elseif(request('type') == 'standart')
-                            Dokumen Standart
-                        @elseif(request('type') == 'formulir')
-                            Dokumen Formulir
-                        @else
-                            Manajemen Dokumen
-                        @endif
-                    </h1>
-                </div>
+                    <h1 class="m-0">Manajemen Dokumen</h1>
+                </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item">Manajemen Dokumen</li>
-                        <li class="breadcrumb-item active">
-                            @if(request('type') == 'kebijakan')
-                                Dokumen Kebijakan
-                            @elseif(request('type') == 'manual')
-                                Dokumen Manual
-                            @elseif(request('type') == 'standart')
-                                Dokumen Standart
-                            @elseif(request('type') == 'formulir')
-                                Dokumen Formulir
-                            @else
-                                Semua Dokumen
-                            @endif
-                        </li>
+                        <li class="breadcrumb-item active">Manajemen Dokumen</li>
                     </ol>
-                </div>
-            </div>
-        </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content-header -->
 @endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -50,6 +26,7 @@
                     <h3 class="card-title">Tabel Data Dokumen</h3>
                     <a href="{{ route('dokumen.create') }}" class="btn btn-primary float-right"> Tambah</a>
                 </div>
+                <!-- /.card-header -->
                 <div class="card-body">
                     @include('components.app.alert')
                     <table class="table table-bordered" id="datatable">
@@ -72,12 +49,11 @@
         </div>
     </div>
 @endsection
-
 @push('sub-styles')
     <link rel="stylesheet" href="/theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    {{-- <link rel="stylesheet" href="/theme/plugins/datatables-buttons/css/buttons.bootstrap4.min.css"> --}}
 @endpush
-
 @push('sub-scripts')
     <script src="/theme/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/theme/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -100,7 +76,7 @@
                 data: 'kategori'
             }, {
                 data: 'judul'
-            },{
+            },s{
                 data: 'user'
             }, {
                 data: 'keterangan'
