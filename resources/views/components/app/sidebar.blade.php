@@ -1,11 +1,10 @@
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="/theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        {{-- <i class="brand-image img-circle elevation-3 fas fa-th"
-            style="width: 1.6rem;margin-top: 8px;margin-left:20px"></i> --}}
         <span class="brand-text font-weight-light">APPS SPMI</span>
     </a>
 
@@ -21,15 +20,9 @@
             </div>
         </div>
 
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-        with font-awesome or any other icon font library -->
-
-                {{-- <li class="nav-header">EXAMPLES</li> --}}
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('dashboard.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
@@ -40,13 +33,40 @@
                 </li>
 
                 @role('staf')
-                    <li class="nav-item">
-                        <a href="{{ route('dokumen.index') }}" class="nav-link">
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
                                 Manajemen Dokumen
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'kebijakan']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Kebijakan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'manual']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Manual</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'standart']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Standart</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'formulir']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Formulir</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('evaluasi.index') }}" class="nav-link">
@@ -81,6 +101,7 @@
                         </a>
                     </li>
                 @endrole
+
                 @role('auditor')
                     <li class="nav-item">
                         <a href="{{ route('jadwalAudit.index') }}" class="nav-link">
@@ -90,14 +111,6 @@
                             </p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('evaluasi.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-check-square"></i>
-                            <p>
-                                Evaluasi
-                            </p>
-                        </a>
-                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('audit.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-check-square"></i>
@@ -115,14 +128,42 @@
                         </a>
                     </li>
                 @endrole
+
                 @role('kaprodi')
-                    <li class="nav-item">
-                        <a href="{{ route('dokumen.index') }}" class="nav-link">
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
                                 Manajemen Dokumen
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'kebijakan']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Kebijakan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'manual']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Manual</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'standart']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Standart</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'formulir']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Formulir</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('evaluasi.index') }}" class="nav-link">
@@ -149,14 +190,42 @@
                         </a>
                     </li>
                 @endrole
+
                 @role('direktur')
-                    <li class="nav-item">
-                        <a href="{{ route('dokumen.index') }}" class="nav-link">
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
                                 Dokumen
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'kebijakan']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Kebijakan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'manual']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Manual</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'standart']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Standart</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dokumen.index', ['type' => 'formulir']) }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dokumen Formulir</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('monitoring.index') }}" class="nav-link">
@@ -167,6 +236,7 @@
                         </a>
                     </li>
                 @endrole
+
                 @role('staf|kaprodi')
                     <li class="nav-item">
                         <a href="{{ route('user.index') }}" class="nav-link">
@@ -177,6 +247,7 @@
                         </a>
                     </li>
                 @endrole
+
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf

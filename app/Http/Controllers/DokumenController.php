@@ -25,7 +25,6 @@ class DokumenController extends Controller
             'kategori' => 'required|string',
             'tanggal' => 'required|string',
             'judul' => 'required|string',
-            'revisi' => 'required|string',
             'keterangan' => 'required|string',
             'file' => 'required|file',
         ]);
@@ -61,7 +60,6 @@ class DokumenController extends Controller
             'kategori' => 'required|string',
             'tanggal' => 'required|string',
             'judul' => 'required|string',
-            'revisi' => 'required|string',
             'keterangan' => 'required|string',
             'file' => 'nullable|file',
         ]);
