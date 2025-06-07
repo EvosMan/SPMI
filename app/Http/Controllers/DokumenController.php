@@ -13,11 +13,10 @@ class DokumenController extends Controller
     {
         return view('pages.dokumen.index');
     }
-    public function create(Request $request)
+    public function create()
     {
-        return view('pages.dokumen.form', [
-            'dokumen' => new Dokumen(),
-        ]);
+        $dokumen = new Dokumen();
+        return view('pages.dokumen.form', compact('dokumen'));
     }
     public function store(Request $request)
     {
@@ -25,7 +24,6 @@ class DokumenController extends Controller
             'kategori' => 'required|string',
             'tanggal' => 'required|string',
             'judul' => 'required|string',
-            'revisi' => 'required|string',
             'keterangan' => 'required|string',
             'file' => 'required|file',
         ]);
@@ -61,7 +59,6 @@ class DokumenController extends Controller
             'kategori' => 'required|string',
             'tanggal' => 'required|string',
             'judul' => 'required|string',
-            'revisi' => 'required|string',
             'keterangan' => 'required|string',
             'file' => 'nullable|file',
         ]);
@@ -103,19 +100,30 @@ class DokumenController extends Controller
         }
     }
 
-    public function datatable()
+    public function datatable(Request $request)
     {
-        $query =  Dokumen::query();
-        return DataTables::of($query)
+        $query = Dokumen::query()->with('user');
+        
+        if ($request->type) {
+            $query->where('kategori', ucfirst($request->type));
+        }
+        
+        return datatables()->of($query)
             ->addIndexColumn()
-            ->addColumn('user', function ($data) {
-                return $data->user->name;
-            })->addColumn('action', function ($data) {
-                return view('components.datatable.action', [
-                    'file'   => $data->file,
-                    'urlEdit'   => route('dokumen.edit', $data->id),
-                    'urlDelete' => route('dokumen.destroy', $data->id),
-                ]);
+            ->addColumn('action', function($row){
+                $btn = '<a href="'.route('dokumen.edit', $row->id).'" class="btn btn-sm btn-primary">Edit</a> ';
+                $btn .= '<a href="'.route('dokumen.download', $row->id).'" class="btn btn-sm btn-success">Download</a> ';
+                $btn .= '<form action="'.route('dokumen.destroy', $row->id).'" method="POST" class="d-inline">';
+                $btn .= csrf_field() . method_field('DELETE');
+                $btn .= '<button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>';
+                $btn .= '</form>';
+                return $btn;
+            })
+            ->editColumn('tanggal', function($row){
+                return $row->tanggal ? date('d/m/Y', strtotime($row->tanggal)) : '';
+            })
+            ->editColumn('user', function($row){
+                return $row->user ? $row->user->name : '';
             })
             ->rawColumns(['action'])
             ->make(true);

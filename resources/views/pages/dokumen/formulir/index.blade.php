@@ -36,7 +36,6 @@
                                 <th>Tanggal</th>
                                 <th>Kategori</th>
                                 <th>Judul</th>
-                                <th>Revisi</th>
                                 <th>Di Upload Oleh</th>
                                 <th>Keterangan</th>
                                 <th style="width: 20%">Aksi</th>
@@ -77,9 +76,7 @@
                 data: 'kategori'
             }, {
                 data: 'judul'
-            }, {
-                data: 'revisi'
-            }, {
+            },s{
                 data: 'user'
             }, {
                 data: 'keterangan'
