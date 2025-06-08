@@ -22,7 +22,18 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardControler::class, 'index'])->name('dashboard.index');
-    Route::resource('dokumen', DokumenController::class)->names('dokumen')->parameter('dokumen', 'dokumen');
+
+    Route::prefix('dokumen')->group(function () {
+        Route::get('/download/{dokumen}', [DokumenController::class, 'download'])->name('dokumen.download');
+
+        Route::get('/{type}', [DokumenController::class, 'index'])->name('dokumen.type.index');
+        Route::get('/{type}/create', [DokumenController::class, 'create'])->name('dokumen.type.create');
+        Route::post('/{type}', [DokumenController::class, 'store'])->name('dokumen.type.store');
+        Route::get('/{type}/{dokumen}/edit', [DokumenController::class, 'edit'])->name('dokumen.type.edit');
+        Route::put('/{type}/{dokumen}', [DokumenController::class, 'update'])->name('dokumen.type.update');
+        Route::delete('/{type}/{dokumen}', [DokumenController::class, 'destroy'])->name('dokumen.type.destroy');
+    })->where('type', 'kebijakan|standar|manual|formulir');
+
     Route::resource('manajemen-evaluasi', EvaluasiController::class)->names('evaluasi')->parameters(['manajemen-evaluasi' => 'evaluasi']);
     Route::resource('evaluasi/{evaluasi}/detail-evaluasi', DetailEvaluasiController::class)->names('detailEvaluasi')->parameters(['detail-evaluasi' => 'detailEvaluasi']);
     Route::resource('jadwal-audit', JadwalAuditController::class)->names('jadwalAudit')->parameters(['jadwal-audit' => 'audit']);
