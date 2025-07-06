@@ -35,6 +35,7 @@
                                 <th style="width: 10px">#</th>
                                 <th>Tahun</th>
                                 <th>Feedback</th>
+                                <th>Auditor</th>
                                 <th style="width: 20%">Aksi</th>
                             </tr>
                         </thead>
@@ -71,6 +72,8 @@
                 data: 'audit'
             }, {
                 data: 'keterangan'
+            }, {
+                data: 'auditor'
             }, {
                 data: 'action'
             }]

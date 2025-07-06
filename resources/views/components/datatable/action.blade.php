@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
-    @if (isset($urlStruk))
-        <a href="{{ $urlStruk }}" class="btn btn-warning btn-sm mx-1" target="_blank">Struk</a>
+    @if (isset($urlCetak))
+        <a href="{{ $urlCetak }}" class="btn btn-warning btn-sm mx-1" target="_blank">Cetak</a>
     @endif
     @if (isset($file))
         <a href="{{ $file }}" class="btn btn-warning btn-sm mx-1" target="_blank">File</a>
@@ -20,6 +20,26 @@
             @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm mx-1"
                 onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus</button>
+        </form>
+    @endif
+    @if (isset($urlValidasi))
+        <form action="{{ $urlValidasi }}" method="post">
+            @csrf
+            @method('PUT')
+            <button type="submit" class="btn btn-success btn-sm mx-1"
+                onclick="return confirm('Apakah anda yakin ingin memvalidasi data ini?')">Validasi</button>
+        </form>
+    @endif
+    @if (isset($urlPelaksanaan))
+        <form action="{{ $urlPelaksanaan }}" method="post">
+            @csrf
+            @method('PUT')
+            <input type="submit" class="btn btn-success btn-sm mx-1" value="Sudah Dilaksanakan"
+                name="status_pelaksanaan"
+                onclick="return confirm('Apakah anda yakin ingin memvalidasi pelaksanaan audit ini?')">
+            <input type="submit" class="btn btn-danger btn-sm mx-1" value="Belum Dilaksanakan"
+                name="status_pelaksanaan"
+                onclick="return confirm('Apakah anda yakin ingin memvalidasi pelaksanaan audit ini?')">
         </form>
     @endif
 </div>

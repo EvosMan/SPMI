@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use App\Models\JadwalAudit;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -48,7 +49,8 @@ class AuditController extends Controller
 
     public function edit(Feedback $audit)
     {
-        return view('pages.audit.form', compact('audit'));
+        $jadwal = JadwalAudit::get();
+        return view('pages.audit.form', compact('audit', 'jadwal'));
     }
     public function update(Request $request, Feedback $audit)
     {
@@ -89,6 +91,9 @@ class AuditController extends Controller
             ->addColumn('audit', function ($data) {
                 return 'Audit Tahun ' .  $data->jadwalAudit->tahun;
             })
+            ->addColumn('auditor', function ($data) {
+                return $data->user->name ?? 'Tidak Diketahui';
+            })
             ->addColumn('status', function ($data) {
                 return $data->status;
             })
@@ -100,5 +105,15 @@ class AuditController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function cetak(Feedback $audit)
+    {
+        if ($audit->v_kaprodi !== 'Sudah Divalidasi' || $audit->v_staf !== 'Sudah Divalidasi') {
+            abort(403, 'Data belum divalidasi.');
+        }
+
+        $pdf = Pdf::loadView('pages.audit.cetak', compact('audit'));
+        return $pdf->stream('laporan-audit-' . $audit->id . '.pdf');
     }
 }

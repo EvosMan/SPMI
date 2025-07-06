@@ -10,4 +10,14 @@ class HasilEvaluasi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function detailEvaluasi()
+    {
+        return $this->belongsTo(DetailEvaluasi::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

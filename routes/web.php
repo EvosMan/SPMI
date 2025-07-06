@@ -11,6 +11,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JadwalAuditController;
 use App\Http\Controllers\LaporanMonitoringController;
 use App\Http\Controllers\PengirimanDataController;
+use App\Http\Controllers\ValidasiAuditController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,12 @@ Route::middleware(['auth'])->group(function () {
     })->where('type', 'kebijakan|standar|manual|formulir');
 
     Route::resource('manajemen-evaluasi', EvaluasiController::class)->names('evaluasi')->parameters(['manajemen-evaluasi' => 'evaluasi']);
+    Route::get('manajemen-evaluasi-cetak/{id}', [EvaluasiController::class, 'cetak'])->name('evaluasi.cetak');
     Route::resource('evaluasi/{evaluasi}/detail-evaluasi', DetailEvaluasiController::class)->names('detailEvaluasi')->parameters(['detail-evaluasi' => 'detailEvaluasi']);
     Route::resource('jadwal-audit', JadwalAuditController::class)->names('jadwalAudit')->parameters(['jadwal-audit' => 'audit']);
     Route::resource('audit', AuditController::class);
+    Route::get('audit-cetak/{audit}', [AuditController::class, 'cetak'])->name('audit.cetak');
+    Route::resource('validasi-audit', ValidasiAuditController::class)->only('index', 'update')->names('validasiAudit')->parameters(['validasi-audit' => 'audit']);
     Route::resource('kaprodi-evaluasi', EvaluasiKaprodiController::class);
     Route::resource('feedback', FeedbackController::class);
     Route::get('laporan-monitoring', [LaporanMonitoringController::class, 'index'])->name('monitoring.index');
@@ -53,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('audit', [JadwalAuditController::class, 'datatable'])->name('audit.datatable');
         Route::get('audit-feedback', [AuditController::class, 'datatable'])->name('auditFeedback.datatable');
         Route::get('feedback', [FeedbackController::class, 'datatable'])->name('feedback.datatable');
+        Route::get('validasi-audit', [ValidasiAuditController::class, 'datatable'])->name('validasiAudit.datatable');
         Route::get('data', [PengirimanDataController::class, 'datatable'])->name('data.datatable');
         Route::get('user', [UserController::class, 'datatable'])->name('user.datatable');
     });

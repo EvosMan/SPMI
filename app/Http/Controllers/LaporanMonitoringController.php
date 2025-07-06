@@ -21,9 +21,15 @@ class LaporanMonitoringController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('user', function ($data) {
-                // return 
+                // return
             })
             ->addColumn('action', function ($data) {
+                if ($data->detailEvaluasi->count() > 0 ? $data->detailEvaluasi[0]->hasilEvaluasi : false) {
+                    return view('components.datatable.action', [
+                        'urlCetak' => route('evaluasi.cetak', $data->id),
+                        'urlPilih' => route('kaprodi-evaluasi.edit', $data->id),
+                    ]);
+                }
                 return view('components.datatable.action', [
                     'urlPilih' => route('kaprodi-evaluasi.edit', $data->id),
                 ]);
@@ -46,9 +52,18 @@ class LaporanMonitoringController extends Controller
             ->addColumn('keterangan_Jadwal', function ($data) {
                 return $data->jadwalAudit->keterangan;
             })
+            ->addColumn('auditor', function ($data) {
+                return $data->user->name ?? 'Tidak Diketahui';
+            })
             ->addColumn('action', function ($data) {
+                if (auth()->user()->hasRole('direktur')) {
+                    return view('components.datatable.action', [
+                        'urlCetak'  => route('audit.cetak', $data->id),
+                        'urlPilih' => route('audit.edit', $data->id),
+                    ]);
+                }
                 return view('components.datatable.action', [
-                    'urlPilih' => route('kaprodi-evaluasi.edit', $data->id),
+                    'urlPilih' => route('audit.edit', $data->id),
                 ]);
             })
             ->rawColumns(['action'])

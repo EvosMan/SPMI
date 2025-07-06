@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluasi;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -89,6 +90,14 @@ class EvaluasiController extends Controller
                         'urlPilih' => route('kaprodi-evaluasi.edit', $data->id),
                     ]);
                 }
+                if ($data->detailEvaluasi->count() > 0 ? $data->detailEvaluasi[0]->hasilEvaluasi : false) {
+                    return view('components.datatable.action', [
+                        'urlShow'   => route('detailEvaluasi.index', $data->id),
+                        'urlEdit'   => route('evaluasi.edit', $data->id),
+                        'urlDelete' => route('evaluasi.destroy', $data->id),
+                        'urlCetak'  => route('evaluasi.cetak', $data->id),
+                    ]);
+                }
                 return view('components.datatable.action', [
                     'urlShow'   => route('detailEvaluasi.index', $data->id),
                     'urlEdit'   => route('evaluasi.edit', $data->id),
@@ -97,5 +106,14 @@ class EvaluasiController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function cetak($id)
+    {
+        $evaluasi = Evaluasi::findOrFail($id); // pastikan relasi ke user tersedia
+
+        $pdf = Pdf::loadView('pages.evaluasi.cetak', compact('evaluasi'));
+
+        return $pdf->stream('evaluasi-' . $evaluasi->id . '.pdf');
     }
 }
