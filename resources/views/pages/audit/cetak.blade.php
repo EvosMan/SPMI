@@ -63,10 +63,6 @@
             <td>{{ $audit->v_kaprodi }}</td>
         </tr>
         <tr>
-            <th>Validasi Staf</th>
-            <td>{{ $audit->v_staf }}</td>
-        </tr>
-        <tr>
             <th>Status Pelaksanaan</th>
             <td>{{ $audit->status_pelaksanaan }}</td>
         </tr>

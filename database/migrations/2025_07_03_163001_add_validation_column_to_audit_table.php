@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::table('feedback', function (Blueprint $table) {
             $table->string('v_kaprodi')->default('Belum Divalidasi')->after('status');
-            $table->string('v_staf')->default('Belum Divalidasi')->after('v_kaprodi');
-            $table->string('status_pelaksanaan')->default('Belum')->after('v_staf');
+            $table->string('status_pelaksanaan')->default('Belum')->after('v_kaprodi');
         });
     }
 
@@ -24,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('feedback', function (Blueprint $table) {
-            $table->dropColumn(['v_kaprodi', 'v_staf', 'status_pelaksanaan']);
+            $table->dropColumn(['v_kaprodi', 'status_pelaksanaan']);
         });
     }
 };

@@ -39,7 +39,7 @@
                                 <th>Status Audit</th>
                                 <th>auditor</th>
                                 <th>Validasi Kaprodi</th>
-                                <th>Validasi Staf</th>
+                                
                                 <th>Pelaksanaan</th>
                                 <th style="width: 20%">Aksi</th>
                             </tr>
@@ -87,9 +87,7 @@
                 data: 'auditor'
             }, {
                 data: 'v_kaprodi'
-            }, {
-                data: 'v_staf'
-            }, {
+            },  {
                 data: 'status_pelaksanaan'
             }, {
                 data: 'action'

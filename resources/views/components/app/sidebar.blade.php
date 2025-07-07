@@ -81,23 +81,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('jadwalAudit.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-calendar"></i>
-                            <p>
-                                Jadwal Audit
-                            </p>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="{{ route('validasiAudit.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-check"></i>
-                            <p>
-                                Validasi Audit
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('monitoring.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-cube"></i>
                             <p>

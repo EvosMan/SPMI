@@ -16,18 +16,31 @@ class ValidasiAuditController extends Controller
 
     public function update(Request $request, Feedback $audit)
     {
+        $data = [];
+
         if (auth()->user()->hasRole('kaprodi')) {
             $data['v_kaprodi'] = 'Sudah Divalidasi';
-        } elseif (auth()->user()->hasRole('staf')) {
-            $data['v_staf'] = 'Sudah Divalidasi';
         } elseif (auth()->user()->hasRole('auditor')) {
             $data['status_pelaksanaan'] = $request['status_pelaksanaan'];
         } else {
             return redirect()->route('validasiAudit.index')->with('error', 'Anda tidak memiliki akses untuk melakukan validasi audit');
         }
+
         DB::beginTransaction();
         try {
             $audit->update($data);
+
+            // Ambil data terbaru setelah update
+            $audit->refresh();
+
+            // Cek semua validasi sudah dilakukan
+            if (
+                $audit->v_kaprodi === 'Sudah Divalidasi' &&
+                $audit->status_pelaksanaan === 'Sudah Dilaksanakan'
+            ) {
+                $audit->update(['status' => 'Tercapai']);
+            }
+
             DB::commit();
             return redirect()->route('validasiAudit.index')->with('success', 'Audit Berhasil Diupdate');
         } catch (\Throwable $th) {
@@ -36,18 +49,13 @@ class ValidasiAuditController extends Controller
         }
     }
 
-
     public function datatable()
     {
         $query =  Feedback::query();
         if (auth()->user()->hasRole('kaprodi')) {
             $query->where('v_kaprodi', 'Belum Divalidasi');
-        } elseif (auth()->user()->hasRole('staf')) {
-            $query->where('v_kaprodi', 'Sudah Divalidasi');
-            $query->where('v_staf', 'Belum Divalidasi');
         } elseif (auth()->user()->hasRole('auditor')) {
             $query->where('v_kaprodi', 'Sudah Divalidasi');
-            $query->where('v_staf', 'Sudah Divalidasi');
             $query->where('status_pelaksanaan', 'Belum');
         }
         return DataTables::of($query)

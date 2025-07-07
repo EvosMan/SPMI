@@ -109,7 +109,7 @@ class AuditController extends Controller
 
     public function cetak(Feedback $audit)
     {
-        if ($audit->v_kaprodi !== 'Sudah Divalidasi' || $audit->v_staf !== 'Sudah Divalidasi') {
+        if ($audit->v_kaprodi !== 'Sudah Divalidasi') {
             abort(403, 'Data belum divalidasi.');
         }
 

@@ -54,13 +54,15 @@ class LaporanMonitoringController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('kegiatan', function ($data) {
-                return $data->jadwalAudit->kegiatan;
+                return $data->jadwalAudit ? $data->jadwalAudit->kegiatan : '-';
             })
             ->addColumn('tanggal', function ($data) {
-                return $data->jadwalAudit->tanggal_mulai . ' - ' . $data->jadwalAudit->tanggal_selesai;
+                return $data->jadwalAudit
+                    ? $data->jadwalAudit->tanggal_mulai . ' - ' . $data->jadwalAudit->tanggal_selesai
+                    : '-';
             })
             ->addColumn('keterangan_Jadwal', function ($data) {
-                return $data->jadwalAudit->keterangan;
+                return $data->jadwalAudit ? $data->jadwalAudit->keterangan : '-';
             })
             ->addColumn('auditor', function ($data) {
                 return $data->user->name ?? 'Tidak Diketahui';

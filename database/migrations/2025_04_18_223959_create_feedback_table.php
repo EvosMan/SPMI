@@ -19,6 +19,10 @@ return new class extends Migration
             $table->text('keterangan');
             $table->string('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('jadwal_audit_id')
+                  ->references('id')->on('jadwal_audits')
+                  ->onDelete('cascade');
         });
     }
 

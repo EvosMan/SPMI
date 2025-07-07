@@ -63,7 +63,7 @@
                                 <th>Status Audit</th>
                                 <th>auditor</th>
                                 <th>Validasi Kaprodi</th>
-                                <th>Validasi Staf</th>
+                                
                                 <th>Pelaksanaan</th>
                                 
                             </tr>
@@ -113,27 +113,38 @@
                 targets: '_all',
                 className: 'text-center',
             }],
-            columns: [{
-                data: 'DT_RowIndex'
-            }, {
-                data: 'kegiatan'
-            }, {
-                data: 'tanggal'
-            }, {
-                data: 'keterangan_Jadwal'
-            }, {
-                data: 'keterangan'
-            }, {
-                data: 'status'
-            }, {
-                data: 'auditor'
-            }, {
-                data: 'v_kaprodi'
-            }, {
-                data: 'v_staf'
-            }, {
-                data: 'status_pelaksanaan'
-            }]
+            columns: [
+                { data: 'DT_RowIndex' },
+                { data: 'kegiatan' },
+                { data: 'tanggal' },
+                { data: 'keterangan_Jadwal' },
+                { data: 'keterangan' },
+                {
+                    data: 'status',
+                    render: function(data) {
+                        if (data === 'Tercapai') {
+                            return '<span class="badge badge-success">Tercapai</span>';
+                        } else if (data === 'Proses') {
+                            return '<span class="badge badge-warning">Proses</span>';
+                        } else {
+                            return '<span class="badge badge-danger">Belum Tercapai</span>';
+                        }
+                    }
+                },
+                { data: 'auditor' },
+                { data: 'v_kaprodi' },
+                
+                {
+                    data: 'status_pelaksanaan',
+                    render: function(data) {
+                        if (data === 'Sudah Dilaksanakan') {
+                            return '<span class="badge badge-success">Sudah Dilaksanakan</span>';
+                        } else {
+                            return '<span class="badge badge-warning">' + (data ?? 'Belum Dilaksanakan') + '</span>';
+                        }
+                    }
+                }
+            ]
         });
     </script>
 @endpush
