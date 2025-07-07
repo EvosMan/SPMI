@@ -37,9 +37,7 @@
             <input type="submit" class="btn btn-success btn-sm mx-1" value="Sudah Dilaksanakan"
                 name="status_pelaksanaan"
                 onclick="return confirm('Apakah anda yakin ingin memvalidasi pelaksanaan audit ini?')">
-            <input type="submit" class="btn btn-danger btn-sm mx-1" value="Belum Dilaksanakan"
-                name="status_pelaksanaan"
-                onclick="return confirm('Apakah anda yakin ingin memvalidasi pelaksanaan audit ini?')">
+            
         </form>
     @endif
 </div>

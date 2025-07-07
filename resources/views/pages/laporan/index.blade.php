@@ -56,7 +56,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Tahun</th>
+                                <th>Kegiatan</th>
                                 <th>Tanggal</th>
                                 <th>Keterangan Audit</th>
                                 <th>Feedback</th>
@@ -65,7 +65,7 @@
                                 <th>Validasi Kaprodi</th>
                                 <th>Validasi Staf</th>
                                 <th>Pelaksanaan</th>
-                                <th style="width: 20%">Aksi</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +116,7 @@
             columns: [{
                 data: 'DT_RowIndex'
             }, {
-                data: 'tahun'
+                data: 'kegiatan'
             }, {
                 data: 'tanggal'
             }, {
@@ -133,8 +133,6 @@
                 data: 'v_staf'
             }, {
                 data: 'status_pelaksanaan'
-            }, {
-                data: 'action'
             }]
         });
     </script>

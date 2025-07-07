@@ -77,9 +77,10 @@ class DetailEvaluasiController extends Controller
         }
     }
 
-    public function datatable()
+    public function datatable(Request $request)
     {
-        $query =  DetailEvaluasi::query();
+        $evaluasiId = $request->input('evaluasi_id');
+        $query =  DetailEvaluasi::where('evaluasi_id', $evaluasiId);
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {

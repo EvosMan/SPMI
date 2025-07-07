@@ -60,6 +60,9 @@
         $('#datatable').DataTable({
             ajax: {
                 url: "{{ route('detailEvaluasi.datatable') }}",
+                data: {
+                    evaluasi_id: "{{ $evaluasi->id }}"
+                }
             },
             columnDefs: [{
                 targets: '_all',

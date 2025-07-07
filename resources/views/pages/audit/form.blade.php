@@ -37,12 +37,9 @@
                                 @foreach ($jadwal as $item)
                                     <option value="{{ $item->id }}"
                                         {{ $audit->jadwal_audit_id == $item->id || old('jadwal_audit_id') == $item->id ? 'selected' : '' }}>
-                                        Audit Tahun {{ $item->tahun }} ({{ $item->tanggal_mulai }} -
-                                        {{ $item->tanggal_selesai }})
+                                        {{ $item->kegiatan }} ({{ $item->tanggal_mulai }} - {{ $item->tanggal_selesai }})
                                     </option>
                                 @endforeach
-                                @for ($i = 2010; $i < date('Y'); $i++)
-                                @endfor
                             </select>
                             @error('jadwal_audit_id')
                                 <span class="invalid-feedback" role="alert">
@@ -51,7 +48,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="Keterangan">Feedback</label>
+                            <label for="Keterangan">Keterangan</label>
                             <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan">{{ old('keterangan') ?? $audit->keterangan }}</textarea>
                             @error('Keterangan')
                                 <span class="invalid-feedback" role="alert">
@@ -66,6 +63,10 @@
                                 <option value="Tercapai"
                                     {{ $audit->status == 'Tercapai' || old('status') == 'Tercapai' ? 'selected' : '' }}>
                                     Tercapai
+                                </option>
+                                <option value="Proses"
+                                    {{ $audit->status == 'Proses' || old('status') == 'Proses' ? 'selected' : '' }}>
+                                    Proses
                                 </option>
                                 <option value="Belum Tercapai"
                                     {{ $audit->status == 'Belum Tercapai' || old('status') == 'Belum Tercapai' ? 'selected' : '' }}>

@@ -33,8 +33,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Tahun</th>
-                                <th>Feedback</th>
+                                <th>Kegiatan</th>
+                                <th>Keterangan</th>
                                 <th>Auditor</th>
                                 <th style="width: 20%">Aksi</th>
                             </tr>

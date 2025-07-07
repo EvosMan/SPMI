@@ -52,8 +52,8 @@ class ValidasiAuditController extends Controller
         }
         return DataTables::of($query)
             ->addIndexColumn()
-            ->addColumn('tahun', function ($data) {
-                return $data->jadwalAudit->tahun;
+            ->addColumn('kegiatan', function ($data) {
+                return $data->jadwalAudit->kegiatan;
             })
             ->addColumn('tanggal', function ($data) {
                 return $data->jadwalAudit->tanggal_mulai . ' - ' . $data->jadwalAudit->tanggal_selesai;
@@ -62,7 +62,7 @@ class ValidasiAuditController extends Controller
                 return $data->jadwalAudit->keterangan;
             })
             ->addColumn('audit', function ($data) {
-                return 'Audit Tahun ' .  $data->jadwalAudit->tahun;
+                return 'Audit  ' .  $data->jadwalAudit->kegiatan;
             })
             ->addColumn('auditor', function ($data) {
                 return $data->user->name ?? 'Tidak Diketahui';

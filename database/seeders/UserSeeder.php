@@ -28,5 +28,21 @@ class UserSeeder extends Seeder
         ]);
 
         $auditor->assignRole('auditor');
+
+        $direktur = User::create([
+            'name' => 'Direktur',
+            'email' => 'direktur@localhost',
+            'password' => bcrypt('direktur'),
+        ]);
+
+        $direktur->assignRole('direktur');
+
+        $kaprodi = User::create([
+            'name' => 'Kaprodi',
+            'email' => 'kaprodi@localhost',
+            'password' => bcrypt('kaprodi'),
+        ]);
+
+        $kaprodi->assignRole('kaprodi');
     }
 }

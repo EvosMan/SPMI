@@ -89,7 +89,7 @@ class AuditController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('audit', function ($data) {
-                return 'Audit Tahun ' .  $data->jadwalAudit->tahun;
+                return 'Audit ' .  $data->jadwalAudit->kegiatan;
             })
             ->addColumn('auditor', function ($data) {
                 return $data->user->name ?? 'Tidak Diketahui';

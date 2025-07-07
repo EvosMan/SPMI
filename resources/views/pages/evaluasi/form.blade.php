@@ -34,7 +34,7 @@
                             <label for="tahun">Tahun</label>
                             <select class="form-control" name="tahun" id="tahun">
                                 <option value="">Pilih tahun</option>
-                                @for ($i = 2010; $i < date('Y'); $i++)
+                                @for ($i = 2010; $i <= 2050; $i++)
                                     <option value="{{ $i }}"
                                         {{ $evaluasi->tahun == $i || old('tahun') == $i ? 'selected' : '' }}>
                                         {{ $i }}

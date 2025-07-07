@@ -35,7 +35,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Tahun</th>
+                                <th>Kegiatan</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Selesai</th>
                                 <th>Dibuat oleh</th>
@@ -72,7 +72,7 @@
             columns: [{
                 data: 'DT_RowIndex'
             }, {
-                data: 'tahun'
+                data: 'kegiatan'
             }, {
                 data: 'tanggal_mulai'
             }, {

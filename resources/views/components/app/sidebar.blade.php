@@ -88,14 +88,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('feedback.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-bell"></i>
-                            <p>
-                                Feedback
-                            </p>
-                        </a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a href="{{ route('validasiAudit.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-check"></i>
@@ -234,25 +227,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('dokumen.index', ['type' => 'kebijakan']) }}" class="nav-link">
+                                <a href="{{ route('dokumen.type.index', 'kebijakan') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dokumen Kebijakan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dokumen.index', ['type' => 'manual']) }}" class="nav-link">
+                                <a href="{{ route('dokumen.type.index', 'manual') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dokumen Manual</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dokumen.index', ['type' => 'standart']) }}" class="nav-link">
+                                <a href="{{ route('dokumen.type.index', 'standar') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dokumen Standart</p>
+                                    <p>Dokumen Standar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dokumen.index', ['type' => 'formulir']) }}" class="nav-link">
+                                <a href="{{ route('dokumen.type.index', 'formulir') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dokumen Formulir</p>
                                 </a>

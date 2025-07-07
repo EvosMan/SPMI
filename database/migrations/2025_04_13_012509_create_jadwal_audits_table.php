@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jadwal_audits', function (Blueprint $table) {
             $table->id();
-            $table->string('tahun');
+            $table->string('kegiatan');
             $table->foreignId('user_id');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');

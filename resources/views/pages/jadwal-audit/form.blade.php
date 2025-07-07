@@ -33,22 +33,16 @@
                             @method('PUT')
                         @endif
                         <div class="form-group">
-                            <label for="tahun">Tahun</label>
-                            <select class="form-control" name="tahun" id="tahun">
-                                <option value="">Pilih tahun</option>
-                                @for ($i = 2010; $i < date('Y'); $i++)
-                                    <option value="{{ $i }}"
-                                        {{ $audit->tahun == $i || old('tahun') == $i ? 'selected' : '' }}>
-                                        {{ $i }}
-                                    </option>
-                                @endfor
-                            </select>
-                            @error('tahun')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                        <label for="kegiatan">Kegiatan</label>
+    <input type="text" name="kegiatan" id="kegiatan"
+        class="form-control @error('kegiatan') is-invalid @enderror"
+        value="{{ old('kegiatan') ?? $audit->kegiatan }}">
+    @error('kegiatan')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
                         <div class="form-group">
                             <label for="tanggal_mulai">Tanggal Mulai</label>
                             <input type="date" name="tanggal_mulai" id="tanggal_mulai"

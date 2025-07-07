@@ -23,7 +23,7 @@ class JadwalAuditController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'tahun' => 'required|string',
+            'kegiatan' => 'required|string',
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
             'keterangan' => 'required|string',
@@ -53,7 +53,7 @@ class JadwalAuditController extends Controller
     public function update(Request $request, JadwalAudit $audit)
     {
         $validate = $request->validate([
-            'tahun' => 'required|string',
+            'kegiatan' => 'required|string',
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
             'keterangan' => 'required|string',
