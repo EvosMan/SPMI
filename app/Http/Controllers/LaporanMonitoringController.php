@@ -37,6 +37,16 @@ class LaporanMonitoringController extends Controller
                         'urlCetak' => route('evaluasi.cetak', $data->id),
                     ]);
                 }
+                if ($user->hasRole('direktur') && $bolehCetak) {
+                    return view('components.datatable.action', [
+                        'urlCetak' => route('evaluasi.cetak', $data->id),
+                    ]);
+                }
+                if ($user->hasRole('auditor') && $bolehCetak) {
+                    return view('components.datatable.action', [
+                        'urlCetak' => route('evaluasi.cetak', $data->id),
+                    ]);
+                }
                 if ($user->hasRole('kaprodi')) {
                     $actions = [];
 

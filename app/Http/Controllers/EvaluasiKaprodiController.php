@@ -36,18 +36,22 @@ class EvaluasiKaprodiController extends Controller
                     $keterangan = $request->input("keterangan-$id");
 
                     // Simpan ke DB
-                    HasilEvaluasi::create([
-                        'detail_evaluasi_id' => $id, // simpan ID-nya juga kalau perlu
-                        'user_id' => auth()->user()->id,
-                        'jawaban' => $jawaban,
-                        'nama_dokumen' => $dokumen,
-                        'keterangan' => $keterangan,
-                    ]);
+                    HasilEvaluasi::updateOrCreate(
+                        [
+                            'detail_evaluasi_id' => $id,
+                            'user_id' => auth()->user()->id,
+                        ],
+                        [
+                            'jawaban' => $jawaban,
+                            'nama_dokumen' => $dokumen,
+                            'keterangan' => $keterangan,
+                        ]
+                    );
                 }
             }
             // $kaprodiEvaluasi->update($validate);
             DB::commit();
-            return redirect()->route('pages.laporan.index')->with('success', 'Evaluasi Berhasil Diupdate');
+            return redirect()->route('monitoring.index')->with('success', 'Evaluasi Berhasil Diupdate');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('kaprodi-evaluasi.edit', $kaprodiEvaluasi->id)->with('error', 'Evaluasi Gagal Diupdate');

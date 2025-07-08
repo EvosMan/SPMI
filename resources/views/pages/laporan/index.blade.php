@@ -51,7 +51,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                @include('components.app.alert')
+
                 <table class="table table-bordered audit" id="audit">
                     <thead>
                         <tr>
