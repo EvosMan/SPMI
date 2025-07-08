@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('jadwal_audit_id')
-                  ->references('id')->on('jadwal_audits')
-                  ->onDelete('cascade');
+                ->references('id')->on('jadwal_audits')
+                ->onDelete('cascade');
         });
     }
 

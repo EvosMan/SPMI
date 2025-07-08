@@ -47,7 +47,7 @@ class EvaluasiKaprodiController extends Controller
             }
             // $kaprodiEvaluasi->update($validate);
             DB::commit();
-            return redirect()->route('evaluasi.index')->with('success', 'Evaluasi Berhasil Diupdate');
+            return redirect()->route('pages.laporan.index')->with('success', 'Evaluasi Berhasil Diupdate');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('kaprodi-evaluasi.edit', $kaprodiEvaluasi->id)->with('error', 'Evaluasi Gagal Diupdate');
