@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluasi;
-use App\Models\Feedback;
+use App\Models\JadwalAudit;
 use App\Models\HasilEvaluasi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -37,10 +37,26 @@ class LaporanMonitoringController extends Controller
                         'urlCetak' => route('evaluasi.cetak', $data->id),
                     ]);
                 }
-                if ($user->hasRole('kaprodi')) {
+                if ($user->hasRole('direktur') && $bolehCetak) {
                     return view('components.datatable.action', [
-                        'urlPilih' => route('kaprodi-evaluasi.edit', $data->id),
+                        'urlCetak' => route('evaluasi.cetak', $data->id),
                     ]);
+                }
+                if ($user->hasRole('auditor') && $bolehCetak) {
+                    return view('components.datatable.action', [
+                        'urlCetak' => route('evaluasi.cetak', $data->id),
+                    ]);
+                }
+                if ($user->hasRole('kaprodi')) {
+                    $actions = [];
+
+                    if ($bolehCetak) {
+                        $actions['urlCetak'] = route('evaluasi.cetak', $data->id);
+                    }
+
+                    $actions['urlPilih'] = route('kaprodi-evaluasi.edit', $data->id);
+
+                    return view('components.datatable.action', $actions);
                 }
                 return '-';
             })
@@ -50,19 +66,18 @@ class LaporanMonitoringController extends Controller
 
     public function datatableAudit()
     {
-        $query =  Feedback::query()->with('jadwalAudit');
+        $query = JadwalAudit::with('user');
+
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('kegiatan', function ($data) {
-                return $data->jadwalAudit ? $data->jadwalAudit->kegiatan : '-';
+                return $data->kegiatan ?? '-';
             })
             ->addColumn('tanggal', function ($data) {
-                return $data->jadwalAudit
-                    ? $data->jadwalAudit->tanggal_mulai . ' - ' . $data->jadwalAudit->tanggal_selesai
-                    : '-';
+                return $data->tanggal_mulai . ' - ' . $data->tanggal_selesai;
             })
-            ->addColumn('keterangan_Jadwal', function ($data) {
-                return $data->jadwalAudit ? $data->jadwalAudit->keterangan : '-';
+            ->addColumn('lokasi', function ($data) {
+                return $data->lokasi ?? '-';
             })
             ->addColumn('auditor', function ($data) {
                 return $data->user->name ?? 'Tidak Diketahui';

@@ -37,7 +37,7 @@
     <h2>LAPORAN EVALUASI</h2>
     <div class="info">
         <p><strong>Aspek</strong>: {{ $evaluasi->aspek ?? '-' }}</p>
-        <p><strong>Auditee</strong>: {{ $evaluasi->detailEvaluasi[0]->hasilEvaluasi->user->name ?? '-' }}</p>
+
     </div>
 
     <table>
@@ -52,13 +52,13 @@
         </thead>
         <tbody>
             @foreach ($evaluasi->detailEvaluasi as $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td style="text-align: left">{{ $item->sub_aspek }}</td>
-                    <td>{{ $item->hasilEvaluasi->jawaban }}</td>
-                    <td style="text-align: left">{{ $item->hasilEvaluasi->nama_dokumen ?? '-' }}</td>
-                    <td style="text-align: left">{{ $item->hasilEvaluasi->keterangan ?? '-' }}</td>
-                </tr>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td style="text-align: left">{{ $item->sub_aspek }}</td>
+                <td>{{ $item->hasilEvaluasi->jawaban }}</td>
+                <td style="text-align: left">{{ $item->hasilEvaluasi->nama_dokumen ?? '-' }}</td>
+                <td style="text-align: left">{{ $item->hasilEvaluasi->keterangan ?? '-' }}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>

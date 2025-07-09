@@ -26,11 +26,13 @@ class JadwalAuditController extends Controller
             'kegiatan' => 'required|string',
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
+            'lokasi' => 'required|string',
             'keterangan' => 'required|string',
         ]);
         DB::beginTransaction();
         try {
             $validate['user_id'] = auth()->user()->id;
+            $validate['status'] = 'Proses';
             JadwalAudit::create($validate);
             DB::commit();
             return redirect()->route('jadwalAudit.index')->with('success', 'Jadwal Audit Berhasil Ditambahkan');
@@ -56,11 +58,13 @@ class JadwalAuditController extends Controller
             'kegiatan' => 'required|string',
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
+            'lokasi' => 'required|string',
             'keterangan' => 'required|string',
         ]);
         DB::beginTransaction();
         try {
             $audit->update($validate);
+            $validate['status'] = 'Proses';
             DB::commit();
             return redirect()->route('jadwalAudit.index')->with('success', 'Jadwal Audit Berhasil Diupdate');
         } catch (\Throwable $th) {

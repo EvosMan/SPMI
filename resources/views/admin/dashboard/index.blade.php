@@ -45,37 +45,29 @@ use Carbon\Carbon;
         </div>
     </div>
 </div>
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+        <div class="inner">
+            <h3>{{ $countEvaluasi ?? 0 }}</h3>
+            <p>Total Evaluasi</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+        <div class="inner">
+            <h3>{{ $countAudit ?? 0 }}</h3>
+            <p>Total Audit</p>
+        </div>
+    </div>
+</div>
+
 <!-- /.row -->
 <!-- Main row -->
-{{-- <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
 
-            <!-- LINE CHART -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Jadwal Audit</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Tahun/Bulan</td>
-                                <td>Pendapatan</td>
-                                <td>Beban</td>
-                                <td>Laba</td>
-                                <td>Rugi</td>
-                            </tr>
-                        </thead>
-                        
-                    </table>
-                </div>
-            </div>
-            <!-- /.card -->
-        </section>
-        <!-- /.Left col -->
-    </div> --}}
 <!-- /.row (main row) -->
 @endsection
 @push('sub-styles')

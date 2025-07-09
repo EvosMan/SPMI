@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Feedback;
+use App\Models\JadwalAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,7 +14,7 @@ class ValidasiAuditController extends Controller
         return view('pages.validasi-audit.index');
     }
 
-    public function update(Request $request, Feedback $audit)
+    public function update(Request $request, JadwalAudit $audit)
     {
         $data = [];
 
@@ -51,7 +51,7 @@ class ValidasiAuditController extends Controller
 
     public function datatable()
     {
-        $query =  Feedback::query();
+        $query =  JadwalAudit::query();
         if (auth()->user()->hasRole('kaprodi')) {
             $query->where('v_kaprodi', 'Belum Divalidasi');
         } elseif (auth()->user()->hasRole('auditor')) {
@@ -61,22 +61,22 @@ class ValidasiAuditController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('kegiatan', function ($data) {
-                return $data->jadwalAudit->kegiatan;
+                return $data->kegiatan;
             })
             ->addColumn('tanggal', function ($data) {
-                return $data->jadwalAudit->tanggal_mulai . ' - ' . $data->jadwalAudit->tanggal_selesai;
+                return $data->tanggal_mulai . ' - ' . $data->tanggal_selesai;
             })
-            ->addColumn('keterangan_Jadwal', function ($data) {
-                return $data->jadwalAudit->keterangan;
+            ->addColumn('lokasi', function ($data) {
+                return $data->lokasi;
             })
             ->addColumn('audit', function ($data) {
-                return 'Audit  ' .  $data->jadwalAudit->kegiatan;
+                return 'Audit ' . $data->kegiatan;
             })
             ->addColumn('auditor', function ($data) {
                 return $data->user->name ?? 'Tidak Diketahui';
             })
             ->addColumn('status', function ($data) {
-                return $data->status;
+                return $data->status ?? '-';
             })
             ->addColumn('action', function ($data) {
                 if (auth()->user()->hasRole('auditor')) {

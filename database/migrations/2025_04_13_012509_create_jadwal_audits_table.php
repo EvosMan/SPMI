@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->text('lokasi');
             $table->text('keterangan');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
