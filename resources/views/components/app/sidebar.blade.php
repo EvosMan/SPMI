@@ -90,6 +90,7 @@
                 </li>
                 @endrole
 
+
                 @role('auditor')
                 <li class="nav-item">
                     <a href="{{ route('jadwalAudit.index') }}" class="nav-link">
@@ -99,12 +100,27 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{ route('validasiAudit.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-check"></i>
                         <p>
                             Pelaksanaan Audit
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('audit.reschedule.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-redo"></i>
+                        <p>
+                            Reschedule Audit
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('audit.reject.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-times-circle"></i>
+                        <p>
+                            Penolakan Audit
                         </p>
                     </a>
                 </li>
