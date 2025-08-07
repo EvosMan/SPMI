@@ -117,13 +117,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('audit.reject.view') }}" class="nav-link">
-                        <i class="nav-icon fas fa-times-circle"></i>
-                        <p>
-                            Penolakan Audit
-                        </p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('monitoring.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-cube"></i>

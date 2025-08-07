@@ -29,19 +29,19 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="kegiatan">Kegiatan</label>
-                        <input type="text" name="kegiatan" id="kegiatan" class="form-control" value="{{ $audit->kegiatan }}" disabled>
+                        <input type="text" name="kegiatan" id="kegiatan" class="form-control" value="{{ old('kegiatan', $audit->kegiatan) }}">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_mulai">Tanggal Mulai</label>
-                        <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ $audit->tanggal_mulai }}" disabled>
+                        <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ old('tanggal_mulai', $audit->tanggal_mulai) }}">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_selesai">Tanggal Selesai</label>
-                        <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ $audit->tanggal_selesai }}" disabled>
+                        <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ old('tanggal_selesai', $audit->tanggal_selesai) }}">
                     </div>
                     <div class="form-group">
                         <label for="lokasi">Lokasi</label>
-                        <textarea name="lokasi" class="form-control" id="lokasi" disabled>{{ $audit->lokasi }}</textarea>
+                        <textarea name="lokasi" class="form-control" id="lokasi">{{ old('lokasi', $audit->lokasi) }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="reschedule_reason">Alasan Reschedule</label>
